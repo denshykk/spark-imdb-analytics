@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir -p ../imdb_data
-cd ../imdb_data
+mkdir -p imdb_data
+cd imdb_data
 
 echo "Downloading IMDB datasets..."
 
@@ -26,5 +26,12 @@ curl -O https://datasets.imdbws.com/title.principals.tsv.gz
 echo "Downloading title.ratings.tsv.gz..."
 curl -O https://datasets.imdbws.com/title.ratings.tsv.gz
 
-echo "All downloads complete!"
+echo "All downloads complete! Extracting files..."
+
+for file in *.gz; do
+    echo "Extracting $file..."
+    gunzip -f "$file"
+done
+
+echo "Extraction complete!"
 ls -lh
