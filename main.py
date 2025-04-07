@@ -15,9 +15,9 @@ def test_spark_setup():
 
     test_data = [("Test", 1), ("Spark", 2), ("Setup", 3)]
     columns = ["word", "count"]
-    test_df = spark.createDataFrame(test_data, columns)
 
     print("Testing Spark setup with a simple DataFrame:")
+    test_df = spark.createDataFrame(test_data, columns)
     test_df.show()
 
     return spark
