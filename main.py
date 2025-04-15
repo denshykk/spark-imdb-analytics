@@ -75,11 +75,11 @@ def run_all_analytics(spark, datasets):
 
     # Denys Tykhonov's analytics
     denys_analytics = DenysTykhonovAnalytics(spark, datasets)
-    #denys_analytics.run_all_analytics()
+    denys_analytics.run_all_analytics()
 
     # Ivan Dobrodieiev's analytics
     ivan_analytics = IvanDobrodieievAnalytics(spark, datasets)
-    #ivan_analytics.run_all_analytics()
+    ivan_analytics.run_all_analytics()
 
     # Ivan Pivtorak's analytics
     ivan_pivtorak_analytics = IvanPivtorakAnalytics(spark, datasets)
