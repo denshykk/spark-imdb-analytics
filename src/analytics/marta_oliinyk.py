@@ -11,8 +11,8 @@ class MartaOliinykAnalytics:
     """
     Contains 6 new business questions and their implementation:
     1. Who are the most frequent actors in a specific genre? (Filter, Join, Explode, Group By)
-    2. What are the trends in average movie ratings by decade? (Filter, Group By) треба додати обрахунок проросту
-    3. What are the top-rated movies by country of origin? (Join, Window Function) не працює
+    2. What are the trends in average movie ratings by decade? (Filter, Group By)
+    3. What are the top-rated movies by country of origin? (Join, Window Function)
     4. Which actors have acted in the most diverse set of genres? (Join, Explode, Aggregation)
     5. Which writers have written the most top-rated movies (rating > 8.5)? (Filter, Join, Group By)
     6. Which genres have seen the biggest increase in production volume over the last 3 decades?
