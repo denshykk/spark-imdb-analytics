@@ -3,6 +3,7 @@ import time
 
 from src.analytics.denys_tykhonov import DenysTykhonovAnalytics
 from src.analytics.ivan_dobrodieiev import IvanDobrodieievAnalytics
+from src.analytics.ivan_pivtorak import IvanPivtorakAnalytics
 from src.data.data_loader import ImdbDataLoader
 from src.schemas.imdb_schemas import imdb_schemas
 from src.utils.spark_utils import create_spark_session, print_schema_info, print_basic_stats
@@ -74,11 +75,15 @@ def run_all_analytics(spark, datasets):
 
     # Denys Tykhonov's analytics
     denys_analytics = DenysTykhonovAnalytics(spark, datasets)
-    denys_analytics.run_all_analytics()
+    #denys_analytics.run_all_analytics()
 
     # Ivan Dobrodieiev's analytics
     ivan_analytics = IvanDobrodieievAnalytics(spark, datasets)
-    ivan_analytics.run_all_analytics()
+    #ivan_analytics.run_all_analytics()
+
+    # Ivan Pivtorak's analytics
+    ivan_pivtorak_analytics = IvanPivtorakAnalytics(spark, datasets)
+    ivan_pivtorak_analytics.run_all_analytics()
 
     print("\n===== All Analytics Completed =====")
 
