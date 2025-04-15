@@ -221,7 +221,7 @@ class IvanPivtorakAnalytics:
             tv_series_df.select("tconst", "primaryTitle"),
             episode_count_df["parentTconst"] == tv_series_df["tconst"],
             how="inner"
-        ).select("primaryTitle", "numEpisodes").orderBy(col("numEpisodes").desc()).limit(5)
+        ).select("primaryTitle", "numEpisodes").orderBy(col("numEpisodes").desc()).limit(20)
 
         write_to_csv(result_df, self.output_path, "top_longest_tv_series_by_episodes")
 
