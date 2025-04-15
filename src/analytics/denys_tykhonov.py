@@ -12,7 +12,7 @@ class DenysTykhonovAnalytics:
     """
     Analytics implementation by Denys Tykhonov
     Contains 6 business questions and their implementation:
-    1. What are the top 10 highest-rated movies with at least 10,000 votes? (Filter, Join)
+    1. What are the top 20 highest-rated movies with at least 10,000 votes? (Filter, Join)
     2. Which actors have appeared in the most TV series episodes? (Filter, Join)
     3. What is the average rating by genre for movies released after 2010? (Filter, Join, Group By)
     4. Which directors have improved their average movie ratings over time? (Filter, Join, Group By, Window Function)
@@ -35,12 +35,12 @@ class DenysTykhonovAnalytics:
 
     def top_rated_movies(self):
         """
-        Business Question 1: What are the top 10 highest-rated movies with at least 10,000 votes?
+        Business Question 1: What are the top 20 highest-rated movies with at least 10,000 votes?
 
         Uses: JOIN & FILTER operation
 
         Returns:
-            DataFrame: Top 10 highest-rated movies
+            DataFrame: Top 20 highest-rated movies
         """
         # Get necessary datasets
         basics_df = self.datasets["title.basics"]
@@ -63,7 +63,7 @@ class DenysTykhonovAnalytics:
             col("numVotes")
         ).orderBy(
             col("averageRating").desc()
-        ).limit(10)
+        ).limit(20)
 
         write_to_csv(result_df, self.output_path, "top_rated_movies")
 
@@ -392,31 +392,31 @@ class DenysTykhonovAnalytics:
 
         try:
             print("\n1. Finding top rated movies...")
-            self.top_rated_movies().show(10, truncate=False)
+            self.top_rated_movies().show(20, truncate=False)
         except Exception as e:
             print(f"Error in top_rated_movies: {str(e)}")
 
         try:
             print("\n2. Finding actors who appeared in most TV episodes...")
-            self.actors_in_most_tv_episodes().show(10, truncate=False)
+            self.actors_in_most_tv_episodes().show(20, truncate=False)
         except Exception as e:
             print(f"Error in actors_in_most_tv_episodes: {str(e)}")
 
         try:
             print("\n3. Calculating average rating by genre for recent movies...")
-            self.avg_rating_by_genre().show(10, truncate=False)
+            self.avg_rating_by_genre().show(20, truncate=False)
         except Exception as e:
             print(f"Error in avg_rating_by_genre: {str(e)}")
 
         try:
             print("\n4. Finding directors with improving ratings over time...")
-            self.directors_with_improving_ratings().show(10, truncate=False)
+            self.directors_with_improving_ratings().show(20, truncate=False)
         except Exception as e:
             print(f"Error in directors_with_improving_ratings: {str(e)}")
 
         try:
             print("\n5. Finding most common non-English languages in movies...")
-            self.most_common_non_english_languages().show(10, truncate=False)
+            self.most_common_non_english_languages().show(20, truncate=False)
         except Exception as e:
             print(f"Error in most_common_non_english_languages: {str(e)}")
 
