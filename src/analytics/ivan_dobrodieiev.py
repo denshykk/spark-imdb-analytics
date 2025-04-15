@@ -51,8 +51,8 @@ class IvanDobrodieievAnalytics:
 
         # Join with names to get director names
         result_df = grouped_df.join(names_df, grouped_df["director"] == names_df["nconst"], "left").select(
-            col("genres"), col("primaryName").alias("director"), col("movie_count")).orderBy(
-            col("movie_count").desc()).limit(10)
+            col("genres")[0], col("primaryName").alias("director"), col("movie_count")).orderBy(
+            col("movie_count").desc()).limit(20)
 
         write_to_csv(result_df, self.output_path, "directors_most_movies_in_genre")
 
@@ -99,7 +99,7 @@ class IvanDobrodieievAnalytics:
         )
 
         # Order by the number of collaborations in descending order
-        result_df = result_df.orderBy(col("collaboration_count").desc()).limit(10)
+        result_df = result_df.orderBy(col("collaboration_count").desc()).limit(20)
 
         write_to_csv(result_df, self.output_path, "directors_and_writers_collaboration")
 
@@ -236,9 +236,9 @@ class IvanDobrodieievAnalytics:
         return result_df
 
     def run_all_analytics(self):
-        self.directors_most_movies_in_genre().show(10, truncate=False)
-        self.directors_and_writers_collaboration().show(10, truncate=False)
-        self.top_movies_by_genre().show(10, truncate=False)
-        self.genres_runtime_analysis().show(10, truncate=False)
-        self.adult_vs_non_adult_distribution().show(10, truncate=False)
-        self.job_categories_count().show(10, truncate=False)
+        self.directors_most_movies_in_genre().show(20, truncate=False)
+        self.directors_and_writers_collaboration().show(20, truncate=False)
+        self.top_movies_by_genre().show(20, truncate=False)
+        self.genres_runtime_analysis().show(20, truncate=False)
+        self.adult_vs_non_adult_distribution().show(20, truncate=False)
+        self.job_categories_count().show(20, truncate=False)

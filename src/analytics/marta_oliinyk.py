@@ -126,7 +126,7 @@ class MartaOliinykAnalytics:
         result_df = joined_df.join(names_df, "nconst") \
             .select("primaryName", "genre_count") \
             .orderBy(desc("genre_count")) \
-            .limit(10)
+            .limit(20)
 
         write_to_csv(result_df, self.output_path, "most_genre_diverse_actors")
 
@@ -152,7 +152,7 @@ class MartaOliinykAnalytics:
         result_df = director_counts.join(names_df, director_counts["director"] == names_df["nconst"], "left") \
             .select("primaryName", "top_movie_count") \
             .orderBy(desc("top_movie_count")) \
-            .limit(10)
+            .limit(20)
 
         write_to_csv(result_df, self.output_path, "top_directors_by_high_rated_movies")
 
@@ -202,37 +202,37 @@ class MartaOliinykAnalytics:
 
         try:
             print("\n1. Finding most frequent actors in a specific genre...")
-            self.most_frequent_actors_by_genre().show(10, truncate=False)
+            self.most_frequent_actors_by_genre().show(20, truncate=False)
         except Exception as e:
             print(f"Error in most_frequent_actors_by_genre: {str(e)}")
 
         try:
             print("\n2. Calculating average movie ratings by decade...")
-            self.average_rating_by_decade().show(10, truncate=False)
+            self.average_rating_by_decade().show(20, truncate=False)
         except Exception as e:
             print(f"Error in average_rating_by_decade: {str(e)}")
 
         try:
             print("\n3. Finding the top-rated movies by region of origin...")
-            self.top_rated_by_region().show(10, truncate=False)
+            self.top_rated_by_region().show(20, truncate=False)
         except Exception as e:
             print(f"Error in top_rated_by_country: {str(e)}")
 
         try:
             print("\n4. Finding actors that have acted in the most diverse set of genres...")
-            self.most_genre_diverse_actors().show(10, truncate=False)
+            self.most_genre_diverse_actors().show(20, truncate=False)
         except Exception as e:
             print(f"Error in most_genre_diverse_actors: {str(e)}")
 
         try:
             print("\n5. Finding directors with the most top-rated movies...")
-            self.top_directors_by_high_rated_movies().show(10, truncate=False)
+            self.top_directors_by_high_rated_movies().show(20, truncate=False)
         except Exception as e:
             print(f"Error in top_directors_by_high_rated_movies: {str(e)}")
 
         try:
             print("\n6. Analyzing genres with biggest increase in production volume...")
-            self.genre_growth_trend().show(10, truncate=False)
+            self.genre_growth_trend().show(20, truncate=False)
         except Exception as e:
             print(f"Error in genre_growth_trend: {str(e)}")
 

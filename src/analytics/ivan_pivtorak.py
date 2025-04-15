@@ -47,7 +47,7 @@ class IvanPivtorakAnalytics:
             basics_df.select("tconst", "primaryTitle", "startYear"),
             on="tconst",
             how="left"
-        ).select("tconst", "primaryTitle", "startYear", "mention_count").orderBy(col("mention_count").desc()).limit(10)
+        ).select("tconst", "primaryTitle", "startYear", "mention_count").orderBy(col("mention_count").desc()).limit(20)
 
         write_to_csv(result_df, self.output_path, "most_mentioned_titles_by_actors")
 
@@ -221,16 +221,16 @@ class IvanPivtorakAnalytics:
             tv_series_df.select("tconst", "primaryTitle"),
             episode_count_df["parentTconst"] == tv_series_df["tconst"],
             how="inner"
-        ).select("primaryTitle", "numEpisodes").orderBy(col("numEpisodes").desc()).limit(5)
+        ).select("primaryTitle", "numEpisodes").orderBy(col("numEpisodes").desc()).limit(20)
 
         write_to_csv(result_df, self.output_path, "top_longest_tv_series_by_episodes")
 
         return result_df
 
     def run_all_analytics(self):
-        self.most_mentioned_titles_by_actors().show(10, truncate=False)
-        self.avg_episodes_per_season_over_time().show(10, truncate=False)
-        self.average_gap_between_director_movies().show(10, truncate=False)
-        self.avg_votes_per_year_high_rated().show(10, truncate=False)
-        self.count_identical_titles().show(10, truncate=False)
-        self.top_longest_tv_series_by_episodes().show(10, truncate=False)
+        self.most_mentioned_titles_by_actors().show(20, truncate=False)
+        self.avg_episodes_per_season_over_time().show(20, truncate=False)
+        self.average_gap_between_director_movies().show(20, truncate=False)
+        self.avg_votes_per_year_high_rated().show(20, truncate=False)
+        self.count_identical_titles().show(20, truncate=False)
+        self.top_longest_tv_series_by_episodes().show(20, truncate=False)
